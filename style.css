@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* STARTSKÆRM */
+.mode-selector {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.mode-box {
+  flex: 1;
+  max-width: 180px;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.mode-box:hover {
+  border-color: #007bff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,123,255,0.2);
+}
+
+.mode-box.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.mode-box .icon {
+  font-size: 2em;
+  margin-bottom: 8px;
+}
+
+.mode-box .label {
+  font-weight: bold;
+}
+
+/* INPUT */
+.input-group {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group input,
+.input-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#playerList {
+  list-style: none;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 15px 0;
+  background: #f9f9f9;
+}
+
+#playerList li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+#startGameBtn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.3em;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+#startGameBtn:hover:not(:disabled) {
+  background: #218838;
+}
+
+/* SCORETAVLE */
+#scoreTable {
+  width: 100%;
+  table-layout: fixed;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+#scoreTable th,
+#scoreTable td {
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: 0.95em;
+  vertical-align: middle;
+}
+
+#scoreTable th:first-child, #scoreTable td:first-child {
+  width: 150px;
+  min-width: 150px;
+  text-align: left;
+  padding-left: 15px;
+}
+
+#scoreTable th:last-child, #scoreTable td:last-child {
+  width: 100px;
+  min-width: 100px;
+}
+
+#scoreTable th:not(:first-child):not(:last-child),
+#scoreTable td:not(:first-child):not(:last-child) {
+  width: calc((100% - 250px) / var(--n-players, 1));
+}
+
+.section {
+  background: #e0e0e0;
+  font-weight: bold;
+}
+
+.player-header {
+  background: #f8f9fa;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.player-header.current {
+  background: #007bff;
+  color: white;
+}
+
+.player-header.current::after {
+  content: ' (næste)';
+  font-size: 0.8em;
+}
+
+.score.filled {
+  font-weight: bold;
+  background: #e9f7ef;
+}
+
+.fill {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.fill:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.fill:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.fill[style*="background: #28a745"] {
+  background: #28a745 !important;
+}
+
+.grand-total {
+  background: #d4edff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* TERNINGER */
+.dice-area {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.dice-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.die {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s;
+}
+
+.die:hover {
+  transform: scale(1.05);
+}
+
+.die.locked {
+  background: #ffeb3b;
+  border-color: #f57f17;
+}
+
+.die.rolling {
+  animation: roll 0.5s ease;
+}
+
+@keyframes roll {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* KNAPER */
+.controls {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.controls button {
+  margin: 0 15px;
+  padding: 12px 28px;
+  font-size: 1.1em;
+  border-radius: 8px;
+}

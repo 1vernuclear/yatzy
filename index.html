@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yatzy Multiplayer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- STARTSKÆRM -->
+<div id="startScreen" class="container">
+  <h1>Yatzy</h1>
+
+  <!-- Toggle: To bokse -->
+  <div class="mode-selector">
+    <div class="mode-box active" data-mode="dice">
+      <div class="icon">Dice</div>
+      <div class="label">Spil med terninger</div>
+    </div>
+    <div class="mode-box" data-mode="manual">
+      <div class="icon">Edit</div>
+      <div class="label">Manuel indtastning</div>
+    </div>
+  </div>
+
+  <!-- Antal spillere -->
+  <div class="input-group">
+    <label>Antal spillere:</label>
+    <select id="playerCount">
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </select>
+  </div>
+
+  <!-- Indtast navn -->
+  <div class="input-group">
+    <input type="text" id="playerName" placeholder="Indtast spillernavn" />
+    <button id="addPlayerBtn">Tilføj spiller</button>
+  </div>
+
+  <ul id="playerList"></ul>
+
+  <button id="startGameBtn" disabled>Start spil</button>
+</div>
+
+  <!-- SPILSKÆRM (skjult i starten) -->
+  <div id="gameScreen" class="container" style="display: none;">
+    <h1>Yatzy</h1>
+
+    <!-- Terning-område -->
+    <div class="dice-area" id="diceArea" style="display: none;">
+      <div class="dice-container" id="diceContainer"></div>
+      <button id="rollBtn">Rul terninger</button>
+      <button id="lockBtn">Lås valgte</button>
+      <p>Runder tilbage: <span id="rollsLeft">3</span></p>
+    </div>
+
+    <!-- SCORETAVLE MED KOLONNER -->
+<table id="scoreTable">
+  <thead>
+    <tr>
+      <th>Kategori</th>
+      <!-- Spillere tilføjes her (før "Handling") -->
+      <th>Handling</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Øvre del -->
+    <tr><td colspan="100" class="section">Øvre del</td></tr>
+    <tr data-cat="ones"><td>Enere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="twos"><td>Toere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="threes"><td>Treere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="fours"><td>Firere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="fives"><td>Femmere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="sixes"><td>Seksere</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr><td><strong>Sum</strong></td><td></td></tr>
+    <tr><td><strong>Bonus (≥63)</strong></td><td></td></tr>
+    <tr><td><strong>Øvre total</strong></td><td></td></tr>
+
+    <!-- Nedre del -->
+    <tr><td colspan="100" class="section">Nedre del</td></tr>
+    <tr data-cat="onePair"><td>Et par</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="twoPairs"><td>To par</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="threeKind"><td>Tre ens</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="fourKind"><td>Fire ens</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="smallStraight"><td>Lille straight</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="largeStraight"><td>Stor straight</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="house"><td>Hus</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="chance"><td>Chance</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr data-cat="yatzy"><td>Yatzy</td><td><button class="fill">Udfyld</button></td></tr>
+    <tr><td><strong>Nedre total</strong></td><td></td></tr>
+
+    <!-- Grand Total -->
+    <tr class="grand-total"><td><strong>TOTAL</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+    <div class="controls">
+      <button id="resetGame">Nyt spil</button>
+      <button id="saveNote">Gem som note</button>
+    </div>
+  </div>
+
+  <script src="game-logic.js"></script>
+  <script src="multiplayer.js"></script>
+</body>
+</html>
